@@ -40,94 +40,94 @@ ELSEIF( UNIX )
 
 ENDIF()
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(SRCS
-       Embedded/common/src/b_APIEm/DCR.c
-       Embedded/common/src/b_APIEm/BFFaceFinder.c
-       Embedded/common/src/b_APIEm/FaceFinder.c
-       Embedded/common/src/b_APIEm/FaceFinderRef.c
-       Embedded/common/src/b_APIEm/Functions.c
-       Embedded/common/src/b_BasicEm/APh.c
-       Embedded/common/src/b_BasicEm/APhArr.c
-       Embedded/common/src/b_BasicEm/Complex.c
-       Embedded/common/src/b_BasicEm/ComplexArr.c
-       Embedded/common/src/b_BasicEm/Context.c
-       Embedded/common/src/b_BasicEm/DynMemManager.c
-       Embedded/common/src/b_BasicEm/Functions.c
-       Embedded/common/src/b_BasicEm/Int16Arr.c
-       Embedded/common/src/b_BasicEm/Int32Arr.c
-       Embedded/common/src/b_BasicEm/Int8Arr.c
-       Embedded/common/src/b_BasicEm/Math.c.arm
-       Embedded/common/src/b_BasicEm/MemSeg.c
-       Embedded/common/src/b_BasicEm/MemTbl.c
-       Embedded/common/src/b_BasicEm/Memory.c
-       Embedded/common/src/b_BasicEm/Phase.c
-       Embedded/common/src/b_BasicEm/String.c
-       Embedded/common/src/b_BasicEm/UInt16Arr.c
-       Embedded/common/src/b_BasicEm/UInt32Arr.c
-       Embedded/common/src/b_BasicEm/UInt8Arr.c
-       Embedded/common/src/b_BitFeatureEm/BitParam.c
-       Embedded/common/src/b_BitFeatureEm/Feature.c
-       Embedded/common/src/b_BitFeatureEm/Functions.c
-       Embedded/common/src/b_BitFeatureEm/I04Dns2x2Ftr.c
-       Embedded/common/src/b_BitFeatureEm/I04Dns2x4Ftr.c
-       Embedded/common/src/b_BitFeatureEm/I04Tld2x4Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L01Dns2x4Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L01Tld1x1Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L01Tld2x4Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L04Dns2x2Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L04Dns2x4Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L04Dns3x3Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L04Tld2x4Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L06Dns3x3Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L06Dns4x4Ftr.c
-       Embedded/common/src/b_BitFeatureEm/L06DnsNx4x4Ftr.c
-       Embedded/common/src/b_BitFeatureEm/LocalScanDetector.c
-       Embedded/common/src/b_BitFeatureEm/LocalScanner.c
-       Embedded/common/src/b_BitFeatureEm/ScanDetector.c
-       Embedded/common/src/b_BitFeatureEm/Scanner.c
-       Embedded/common/src/b_BitFeatureEm/Sequence.c
-       Embedded/common/src/b_ImageEm/APhImage.c
-       Embedded/common/src/b_ImageEm/ComplexImage.c
-       Embedded/common/src/b_ImageEm/Flt16Image.c
-       Embedded/common/src/b_ImageEm/Functions.c
-       Embedded/common/src/b_ImageEm/HistoEq.c
-       Embedded/common/src/b_ImageEm/UInt16ByteImage.c
-       Embedded/common/src/b_ImageEm/UInt16BytePyrImage.c
-       Embedded/common/src/b_ImageEm/UInt8Image.c
-       Embedded/common/src/b_ImageEm/UInt32Image.c
-       Embedded/common/src/b_ImageEm/UInt8PyramidalImage.c
-       Embedded/common/src/b_TensorEm/Alt.c
-       Embedded/common/src/b_TensorEm/Cluster2D.c
-       Embedded/common/src/b_TensorEm/Cluster3D.c
-       Embedded/common/src/b_TensorEm/CompactAlt.c
-       Embedded/common/src/b_TensorEm/CompactMat.c
-       Embedded/common/src/b_TensorEm/Flt16Alt2D.c
-       Embedded/common/src/b_TensorEm/Flt16Alt3D.c
-       Embedded/common/src/b_TensorEm/Flt16Mat2D.c
-       Embedded/common/src/b_TensorEm/Flt16Mat3D.c
-       Embedded/common/src/b_TensorEm/Flt16Vec.c
-       Embedded/common/src/b_TensorEm/Flt16Vec2D.c
-       Embedded/common/src/b_TensorEm/Flt16Vec3D.c
-       Embedded/common/src/b_TensorEm/Functions.c
-       Embedded/common/src/b_TensorEm/IdCluster2D.c
-       Embedded/common/src/b_TensorEm/Int16Mat2D.c
-       Embedded/common/src/b_TensorEm/Int16Rect.c
-       Embedded/common/src/b_TensorEm/Int16Vec2D.c
-       Embedded/common/src/b_TensorEm/Int16Vec3D.c
-       Embedded/common/src/b_TensorEm/Int32Mat.c
-       Embedded/common/src/b_TensorEm/MapSequence.c
-       Embedded/common/src/b_TensorEm/Mat.c
-       Embedded/common/src/b_TensorEm/Normalizer.c
-       Embedded/common/src/b_TensorEm/RBFMap2D.c
-       Embedded/common/src/b_TensorEm/SubVecMap.c
-       Embedded/common/src/b_TensorEm/Uint32Rect.c
-       Embedded/common/src/b_TensorEm/VectorMap.c
-       FaceRecEm/common/src/b_FDSDK/DCR.c
-       FaceRecEm/common/src/b_FDSDK/FaceFinder.c
-       FaceRecEm/common/src/b_FDSDK/SDK.c
+       neven/Embedded/common/src/b_APIEm/DCR.c
+       neven/Embedded/common/src/b_APIEm/BFFaceFinder.c
+       neven/Embedded/common/src/b_APIEm/FaceFinder.c
+       neven/Embedded/common/src/b_APIEm/FaceFinderRef.c
+       neven/Embedded/common/src/b_APIEm/Functions.c
+       neven/Embedded/common/src/b_BasicEm/APh.c
+       neven/Embedded/common/src/b_BasicEm/APhArr.c
+       neven/Embedded/common/src/b_BasicEm/Complex.c
+       neven/Embedded/common/src/b_BasicEm/ComplexArr.c
+       neven/Embedded/common/src/b_BasicEm/Context.c
+       neven/Embedded/common/src/b_BasicEm/DynMemManager.c
+       neven/Embedded/common/src/b_BasicEm/Functions.c
+       neven/Embedded/common/src/b_BasicEm/Int16Arr.c
+       neven/Embedded/common/src/b_BasicEm/Int32Arr.c
+       neven/Embedded/common/src/b_BasicEm/Int8Arr.c
+       neven/Embedded/common/src/b_BasicEm/MathSSE2.c
+       neven/Embedded/common/src/b_BasicEm/MemSeg.c
+       neven/Embedded/common/src/b_BasicEm/MemTbl.c
+       neven/Embedded/common/src/b_BasicEm/Memory.c
+       neven/Embedded/common/src/b_BasicEm/Phase.c
+       neven/Embedded/common/src/b_BasicEm/String.c
+       neven/Embedded/common/src/b_BasicEm/UInt16Arr.c
+       neven/Embedded/common/src/b_BasicEm/UInt32Arr.c
+       neven/Embedded/common/src/b_BasicEm/UInt8Arr.c
+       neven/Embedded/common/src/b_BitFeatureEm/BitParam.c
+       neven/Embedded/common/src/b_BitFeatureEm/Feature.c
+       neven/Embedded/common/src/b_BitFeatureEm/Functions.c
+       neven/Embedded/common/src/b_BitFeatureEm/I04Dns2x2Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/I04Dns2x4Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/I04Tld2x4Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L01Dns2x4Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L01Tld1x1Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L01Tld2x4Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L04Dns2x2Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L04Dns2x4Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L04Dns3x3Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L04Tld2x4Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L06Dns3x3Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L06Dns4x4Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/L06DnsNx4x4Ftr.c
+       neven/Embedded/common/src/b_BitFeatureEm/LocalScanDetector.c
+       neven/Embedded/common/src/b_BitFeatureEm/LocalScanner.c
+       neven/Embedded/common/src/b_BitFeatureEm/ScanDetector.c
+       neven/Embedded/common/src/b_BitFeatureEm/Scanner.c
+       neven/Embedded/common/src/b_BitFeatureEm/Sequence.c
+       neven/Embedded/common/src/b_ImageEm/APhImage.c
+       neven/Embedded/common/src/b_ImageEm/ComplexImage.c
+       neven/Embedded/common/src/b_ImageEm/Flt16Image.c
+       neven/Embedded/common/src/b_ImageEm/Functions.c
+       neven/Embedded/common/src/b_ImageEm/HistoEq.c
+       neven/Embedded/common/src/b_ImageEm/UInt16ByteImage.c
+       neven/Embedded/common/src/b_ImageEm/UInt16BytePyrImage.c
+       neven/Embedded/common/src/b_ImageEm/UInt8Image.c
+       neven/Embedded/common/src/b_ImageEm/UInt32Image.c
+       neven/Embedded/common/src/b_ImageEm/UInt8PyramidalImage.c
+       neven/Embedded/common/src/b_TensorEm/Alt.c
+       neven/Embedded/common/src/b_TensorEm/Cluster2D.c
+       neven/Embedded/common/src/b_TensorEm/Cluster3D.c
+       neven/Embedded/common/src/b_TensorEm/CompactAlt.c
+       neven/Embedded/common/src/b_TensorEm/CompactMat.c
+       neven/Embedded/common/src/b_TensorEm/Flt16Alt2D.c
+       neven/Embedded/common/src/b_TensorEm/Flt16Alt3D.c
+       neven/Embedded/common/src/b_TensorEm/Flt16Mat2D.c
+       neven/Embedded/common/src/b_TensorEm/Flt16Mat3D.c
+       neven/Embedded/common/src/b_TensorEm/Flt16Vec.c
+       neven/Embedded/common/src/b_TensorEm/Flt16Vec2D.c
+       neven/Embedded/common/src/b_TensorEm/Flt16Vec3D.c
+       neven/Embedded/common/src/b_TensorEm/Functions.c
+       neven/Embedded/common/src/b_TensorEm/IdCluster2D.c
+       neven/Embedded/common/src/b_TensorEm/Int16Mat2D.c
+       neven/Embedded/common/src/b_TensorEm/Int16Rect.c
+       neven/Embedded/common/src/b_TensorEm/Int16Vec2D.c
+       neven/Embedded/common/src/b_TensorEm/Int16Vec3D.c
+       neven/Embedded/common/src/b_TensorEm/Int32Mat.c
+       neven/Embedded/common/src/b_TensorEm/MapSequence.c
+       neven/Embedded/common/src/b_TensorEm/Mat.c
+       neven/Embedded/common/src/b_TensorEm/Normalizer.c
+       neven/Embedded/common/src/b_TensorEm/RBFMap2D.c
+       neven/Embedded/common/src/b_TensorEm/SubVecMap.c
+       neven/Embedded/common/src/b_TensorEm/Uint32Rect.c
+       neven/Embedded/common/src/b_TensorEm/VectorMap.c
+       neven/FaceRecEm/common/src/b_FDSDK/DCR.c
+       neven/FaceRecEm/common/src/b_FDSDK/FaceFinder.c
+       neven/FaceRecEm/common/src/b_FDSDK/SDK.c
 )
 #FILE( GLOB SQUISH_SRC squish/*.h squish/*.cpp )
 #FILE( GLOB GLSW_SRC lib/glsw/*.c lib/glsw/*.h )
@@ -135,9 +135,20 @@ set(SRCS
 #INCLUDE_DIRECTORIES(freeglut-3.0.0/include glew-1.13.0/include)
 
 
+ADD_LIBRARY( pyandroidfacedetector SHARED ${SRCS})
+TARGET_LINK_LIBRARIES( pyandroidfacedetector ${PLATFORM_LIBS})
+TARGET_INCLUDE_DIRECTORIES( pyandroidfacedetector
+    PRIVATE
+	neven/FaceRecEm/common/src/b_FDSDK
+	neven/FaceRecEm/common/src
+	neven/Embedded/common/conf
+	neven/Embedded/common/src
+	neven/unix/src
+)
 
-ADD_LIBRARY(pyandroidfacedetector SHARED ${SRC}) 
-TARGET_LINK_LIBRARIES( pyandroidfacedetector {PLATFORM_LIBS})
+FILE(COPY neven/Embedded/common/data/APIEm/Modules/RFFspeed_501.bmd DESTINATION ${CMAKE_SOURCE_DIR}/bin)
+
+FILE(COPY neven/Embedded/common/data/APIEm/Modules/RFFstd_501.bmd DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 
 ADD_CUSTOM_TARGET(debug ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE:STRING=Debug ${PROJECT_SOURCE_DIR})
 ADD_CUSTOM_TARGET(release ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE:STRING=Release ${PROJECT_SOURCE_DIR})
