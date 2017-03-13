@@ -1,6 +1,6 @@
 from distutils.core import setup, Extension
 
-sources = (
+sources = [
 'pyentry.cc',
 'neven/Embedded/common/src/b_APIEm/DCR.c',
 'neven/Embedded/common/src/b_APIEm/BFFaceFinder.c',
@@ -18,6 +18,7 @@ sources = (
 'neven/Embedded/common/src/b_BasicEm/Int32Arr.c',
 'neven/Embedded/common/src/b_BasicEm/Int8Arr.c',
 'neven/Embedded/common/src/b_BasicEm/MathSSE2.c',
+'neven/Embedded/common/src/b_BasicEm/Math.c',
 'neven/Embedded/common/src/b_BasicEm/MemSeg.c',
 'neven/Embedded/common/src/b_BasicEm/MemTbl.c',
 'neven/Embedded/common/src/b_BasicEm/Memory.c',
@@ -86,22 +87,27 @@ sources = (
 'neven/FaceRecEm/common/src/b_FDSDK/DCR.c',
 'neven/FaceRecEm/common/src/b_FDSDK/FaceFinder.c',
 'neven/FaceRecEm/common/src/b_FDSDK/SDK.c'
-)
+]
 
-include_dirs = (
+include_dirs = [
 'neven/FaceRecEm/common/src/b_FDSDK',
 'neven/FaceRecEm/common/src',
 'neven/Embedded/common/conf',
 'neven/Embedded/common/src',
 'neven/unix/src'
-)
+]
 
-module1 = Extension('demo',
-                    define_macros = [('MAJOR_VERSION', '1'),
-                                     ('MINOR_VERSION', '0')],
-                    include_dirs = ['/usr/local/include'],
+define_macros = [
+('MAJOR_VERSION', '1'),
+('MINOR_VERSION', '0'),
+('HW_SSE2', 1),
+]
+
+module1 = Extension('pyandroidfacedetector',
+                    define_macros = define_macros,
+                    include_dirs = include_dirs,
                     libraries = ['m'],
-                    library_dirs = include_dirs,
+                    library_dirs = [],
                     sources = sources)
 
 setup (name = 'AndroidFaceDetector',

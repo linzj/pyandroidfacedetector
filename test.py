@@ -1,0 +1,2 @@
+import pyandroidfacedetector
+pyandroidfacedetector.initialize()
