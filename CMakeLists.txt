@@ -44,6 +44,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(SRCS
+       pyentry.cc
        neven/Embedded/common/src/b_APIEm/DCR.c
        neven/Embedded/common/src/b_APIEm/BFFaceFinder.c
        neven/Embedded/common/src/b_APIEm/FaceFinder.c
@@ -145,6 +146,9 @@ TARGET_INCLUDE_DIRECTORIES( pyandroidfacedetector
 	neven/Embedded/common/src
 	neven/unix/src
 )
+SET_TARGET_PROPERTIES( pyandroidfacedetector
+PROPERTIES
+PREFIX "")
 
 FILE(COPY neven/Embedded/common/data/APIEm/Modules/RFFspeed_501.bmd DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 
