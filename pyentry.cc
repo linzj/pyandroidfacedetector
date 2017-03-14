@@ -209,11 +209,8 @@ static PyTypeObject PyFaceDetector_Type = {
     PyObject_Del,                // tp_free
 };
 
-static bool initialize(PyFaceDetector* self) {
+static bool initialize(PyFaceDetector* self, const char* modulePath) {
   // load the configuration file
-  const char* modulePath = "./neven/Embedded/common/data/APIEm/Modules";
-  if (!modulePath)
-    return false;
   string path(modulePath);
   path.append("/RFFstd_501.bmd");
   // path.appendPath("usr/share/bmd/RFFspeed_501.bmd");
@@ -275,15 +272,16 @@ static bool initialize(PyFaceDetector* self) {
 static int FaceDetectorInit(PyFaceDetector* self,
                             PyObject* args,
                             PyObject* kwds) {
-  static char* kwlist[] = {(char*)"width", (char*)"height", (char*)"maxFaces",
+  static char* kwlist[] = {(char*)"path", (char*)"width", (char*)"height", (char*)"maxFaces",
                            NULL};
+  const char* modulePath;
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwds, "iii", kwlist, &self->width,
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "siii", kwlist, &modulePath, &self->width,
                                    &self->height, &self->maxFaces)) {
     PyErr_SetString(PyExc_KeyError, "init arguments has invalid keys");
     return -1;
   }
-  if (!initialize(self)) {
+  if (!initialize(self, modulePath)) {
     return -1;
   }
   return 0;
@@ -338,19 +336,20 @@ static PyObject* FaceGetFaceMethod(PyFaceDetector* self, PyObject* args) {
   return GetFace(self, face);
 }
 
-static PyObject* Detect(PyFaceDetector* self, PyObject* byteArray) {
+static PyObject* Detect(PyFaceDetector* self, PyObject* o) {
   // check parameters
-  if (!PyByteArray_Check(byteArray)) {
-    PyErr_SetString(PyExc_KeyError,
+  AutoPyObject byteArray(PyByteArray_FromObject(o));
+  if (!byteArray) {
+    PyErr_SetString(PyExc_TypeError,
                     "byteArray argument should be a byte array");
     return nullptr;
   }
   u32 width = self->width;
   u32 height = self->height;
-  if (PyByteArray_Size(byteArray) != width * height) {
+  if (PyByteArray_Size(byteArray.get()) != width * height) {
     PyErr_Format(PyExc_KeyError,
-                 "The size of byteArray does not equal to width * height = %d",
-                 width * height);
+                 "The size of byteArray does not equal to width * height = %d, but %d",
+                 width * height, PyByteArray_Size(byteArray.get()));
     return nullptr;
   }
   // get the fields we need
@@ -358,7 +357,7 @@ static PyObject* Detect(PyFaceDetector* self, PyObject* byteArray) {
   btk_HFaceFinder hfd = self->fd;
 
   // run detection
-  btk_DCR_assignGrayByteImage(hdcr, PyByteArray_AsString(byteArray), width,
+  btk_DCR_assignGrayByteImage(hdcr, PyByteArray_AsString(byteArray.get()), width,
                               height);
 
   int numberOfFaces = 0;
