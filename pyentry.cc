@@ -272,12 +272,13 @@ static bool initialize(PyFaceDetector* self, const char* modulePath) {
 static int FaceDetectorInit(PyFaceDetector* self,
                             PyObject* args,
                             PyObject* kwds) {
-  static char* kwlist[] = {(char*)"path", (char*)"width", (char*)"height", (char*)"maxFaces",
-                           NULL};
+  static char* kwlist[] = {(char*)"path", (char*)"width", (char*)"height",
+                           (char*)"maxFaces", NULL};
   const char* modulePath;
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwds, "siii", kwlist, &modulePath, &self->width,
-                                   &self->height, &self->maxFaces)) {
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "siii", kwlist, &modulePath,
+                                   &self->width, &self->height,
+                                   &self->maxFaces)) {
     PyErr_SetString(PyExc_KeyError, "init arguments has invalid keys");
     return -1;
   }
@@ -347,9 +348,10 @@ static PyObject* Detect(PyFaceDetector* self, PyObject* o) {
   u32 width = self->width;
   u32 height = self->height;
   if (PyByteArray_Size(byteArray.get()) != width * height) {
-    PyErr_Format(PyExc_KeyError,
-                 "The size of byteArray does not equal to width * height = %d, but %d",
-                 width * height, PyByteArray_Size(byteArray.get()));
+    PyErr_Format(
+        PyExc_KeyError,
+        "The size of byteArray does not equal to width * height = %d, but %d",
+        width * height, PyByteArray_Size(byteArray.get()));
     return nullptr;
   }
   // get the fields we need
@@ -357,8 +359,8 @@ static PyObject* Detect(PyFaceDetector* self, PyObject* o) {
   btk_HFaceFinder hfd = self->fd;
 
   // run detection
-  btk_DCR_assignGrayByteImage(hdcr, PyByteArray_AsString(byteArray.get()), width,
-                              height);
+  btk_DCR_assignGrayByteImage(hdcr, PyByteArray_AsString(byteArray.get()),
+                              width, height);
 
   int numberOfFaces = 0;
   if (btk_FaceFinder_putDCR(hfd, hdcr) == btk_STATUS_OK) {
