@@ -35,10 +35,8 @@ class AndroidFaceDetectorWrapper(object):
 
     def getFace(self, index):
         face = self.detector.GetFace(index)
-        print(face.midpointx, face.midpointy)
         face.midpointx = (face.midpointx - self.offsets[0]) / self.scale
         face.midpointy = (face.midpointy - self.offsets[1]) / self.scale
         face.eyedist = (face.eyedist) / self.scale
-        print(face.midpointx, face.midpointy)
         return face
 
