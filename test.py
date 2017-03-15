@@ -24,10 +24,10 @@ def saveImage(image, getFace, numOfFaces, f):
             colorIndex = i % len(colors)
             color = colors[colorIndex]
             drawPoint(draw, faceData.midpointx, faceData.midpointy, pointsize, color)
-            rect = (faceData.midpointx - 1 * faceData.eyedist,
-                    faceData.midpointy - 1 * faceData.eyedist,
-                    faceData.midpointx + 1 * faceData.eyedist,
-                    faceData.midpointy + 1 * faceData.eyedist)
+            rect = (faceData.midpointx - 1.2 * faceData.eyedist,
+                    faceData.midpointy - 1.5 * faceData.eyedist,
+                    faceData.midpointx + 1.2 * faceData.eyedist,
+                    faceData.midpointy + 2.0 * faceData.eyedist)
             draw.rectangle(rect, outline=color)
             draw.text((0, position), 'confidence: {0}, eyedist: {1}'.format(faceData.confidence, faceData.eyedist), fill=color, font=font)
             position += fontHeight + 5
